@@ -1,7 +1,6 @@
 # Vivid Cortex :: EWMA
 
-This is a simple implementation of the Exponentially Weighted Moving Average algorithms,
-you can find more information about it on [it's wikipedia page](https://en.wikipedia.org/wiki/Moving_average).
+This is a simple implementation of the [Exponentially Weighted Moving Average algorithms](https://en.wikipedia.org/wiki/Moving_average).
 
 ![Build Status](https://circleci.com/gh/VividCortex/moving_average.png?circle-token=1459fa37f9ca0e50cef05d1963146d96d47ea523)
 
