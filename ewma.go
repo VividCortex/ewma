@@ -1,4 +1,4 @@
-package moving_average
+package ewma
 
 const (
 	// By default, we average over a one-minute period, which means the average

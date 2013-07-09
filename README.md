@@ -1,6 +1,6 @@
-# Vivid Cortex :: Moving Average
+# Vivid Cortex :: EWMA
 
-This is a simple implementation of the Moving Average algorithms,
+This is a simple implementation of the Exponentially Weighted Moving Average algorithms,
 you can find more information about it on [it's wikipedia page](https://en.wikipedia.org/wiki/Moving_average).
 
 ![Build Status](https://circleci.com/gh/VividCortex/moving_average.png?circle-token=1459fa37f9ca0e50cef05d1963146d96d47ea523)
@@ -39,14 +39,15 @@ numbers. Unlike SimpleEWMA, it supports a custom age, and thus uses more memory.
 
 ```go
 package main
+import "github.com/VividCortex/ewma"
 
 func main() {
   samples := [100]float64{
     4599, 5711, 4746, 4621, 5037, 4218, 4925, 4281, 5207, 5203, 5594, 5149,
   }
 
-  e := NewMovingAverage() //=> Returns a SimgpleEWMA if called without params
-  a := NewMovingAverage(5) //=> returns a VariableEWMA with a decay of 2 / (5 + 1)
+  e := ewma.NewMovingAverage()       //=> Returns a SimgpleEWMA if called without params
+  a := ewma.NewMovingAverage(5)      //=> returns a VariableEWMA with a decay of 2 / (5 + 1)
 
   for _, f := range samples {
     e.Add(f)
@@ -60,9 +61,9 @@ func main() {
 
 ## Contribute
 
-Contributions are welcome, check out [the Moving Average wikipedia page](https://en.wikipedia.org/wiki/Moving_average) for other flavours to implement.
+Contributions are welcome, check out [the Moving Average wikipedia page](https://en.wikipedia.org/wiki/Moving_average) for other flavours of the algorithm to implement.
 
 
 ## Licence
 
-MIT, see `LICENCE` file
+MIT, see LICENCE file.

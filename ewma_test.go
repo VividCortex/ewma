@@ -1,4 +1,4 @@
-package moving_average
+package ewma
 
 import "testing"
 
