@@ -59,22 +59,41 @@ series.
 
 For another explanation of the algorithm see [Exponentially weighted moving average](http://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) on wikipedia.
 
+### Choosing Alpha
+
+Consider a fixed-size sliding-window moving average (not an exponentially weighted moving average)
+that averages over the previous N samples. What is the average age of each sample? It is N/2.
+
+Now suppose that you wish to construct a EWMA whose samples have the same average age. The formula
+to compute the alpha required for this is: alpha = 2/(N+1). Proof is in the book
+"Production and Operations Analysis" by Steven Nahmias.
+
+So, for example, if you have a time-series with samples once per second, and you want to get the
+moving average over the previous minute, you should use an alpha of .032786885. This, by the way,
+is the constant alpha used for this repository's SimpleEWMA.
+
+### Implementations
+
+This repository contains two implementations of the EWMA algorithm, with different properties.
+
+The implementations all conform to the MovingAverage interface, and the constructor returns
+that type.
+
 #### SimpleEWMA
 
-A SimpleEWMA represents the exponentially weighted moving average of a
-series of numbers. It **will** have different behavior than the VariableEWMA
+A SimpleEWMA is designed for low CPU and memory consumption. It **will** have different behavior than the VariableEWMA
 for multiple reasons. It has no warm-up period and it uses a constant
 decay.  These properties let it use less memory.  It will also behave
 differently when it's equal to zero, which is assumed to mean
 uninitialized, so if a value is likely to actually become zero over time,
 then any non-zero value will cause a sharp jump instead of a small change.
 
-
 #### VariableEWMA
 
-VariableEWMA represents the exponentially weighted moving average of a series of
-numbers. Unlike SimpleEWMA, it supports a custom age, and thus uses more memory.
-
+Unlike SimpleEWMA, this supports a custom age which must be stored, and thus uses more memory.
+It also has a "warmup" time when you start adding values to it. It will report a value of 0.0
+until you have added the required number of samples to it. It uses some memory to store the
+number of samples added to it. As a result it uses a little over twice the memory of SimpleEWMA.
 
 ## Usage
 
