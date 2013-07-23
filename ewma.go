@@ -55,7 +55,8 @@ func NewMovingAverage(age ...float64) MovingAverage {
 type SimpleEWMA struct {
 	// The current value of the average. After adding with Add(), this is
 	// updated to reflect the average of all values seen thus far.
-	value float64
+	value       float64
+	initialized bool
 }
 
 // Value returns the current value of the moving average.
@@ -65,10 +66,11 @@ func (e *SimpleEWMA) Value() float64 {
 
 // Add adds a value to the series and updates the moving average.
 func (e *SimpleEWMA) Add(value float64) {
-	if e.value == 0 { // this is a proxy for "uninitialized"
-		e.value = value
-	} else {
+	if e.initialized {
 		e.value = (value * DECAY) + (e.value * (1 - DECAY))
+	} else {
+		e.value = value
+		e.initialized = true
 	}
 }
 

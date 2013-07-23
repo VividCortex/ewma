@@ -17,6 +17,15 @@ var samples = [100]float64{
 	3197, 5139, 6101, 5279,
 }
 
+func TestInitialisation(t *testing.T) {
+	var e SimpleEWMA
+	e.Add(0)
+	e.Add(1)
+	if e.Value() != DECAY {
+		t.Errorf("e.Value() is %v, wanted %v", e.Value(), DECAY)
+	}
+}
+
 func TestSimpleEWMA(t *testing.T) {
 	var e SimpleEWMA
 	for _, f := range samples {
