@@ -1,4 +1,4 @@
-# Vivid Cortex :: EWMA
+# EWMA
 
 This repo provides Exponentially Weighted Moving Average algorithms, or EWMAs for short.
 
@@ -57,7 +57,7 @@ is added, and the top of the bars in the lower portion of the image represents t
 size of the moving average. It is a smoothed, or low-pass, average of the original
 series.
 
-For another explanation of the algorithm see [Exponentially weighted moving average](http://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) on wikipedia.
+For further reading, see [Exponentially weighted moving average](http://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) on wikipedia.
 
 ### Choosing Alpha
 
@@ -121,9 +121,10 @@ func main() {
 
 ## Contribute
 
-Contributions are welcome, check out [the Moving Average wikipedia page](https://en.wikipedia.org/wiki/Moving_average) for other flavours of the algorithm to implement.
+Contributions are welcome. Please open pull requests or issue reports!
 
 
-## Licence
+## License
 
-MIT, see LICENCE file.
+This repository is Copyright (c) 2013 VividCortex, Inc. All rights reserved.
+It is licensed under the MIT license. Please see the LICENSE file for applicable license terms.

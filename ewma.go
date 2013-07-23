@@ -1,12 +1,16 @@
+// Package ewma implements exponentially weighted moving averages.
 package ewma
+
+// Copyright (c) 2013 VividCortex, Inc. All rights reserved.
+// Please see the LICENSE file for applicable license terms.
 
 const (
 	// By default, we average over a one-minute period, which means the average
 	// age of the metrics in the period is 30 seconds.
 	AVG_METRIC_AGE float64 = 30.0
 
-	// The formula for computing the decay factor from the average age comes from
-	// the book "Production and Operations Analysis" by Steven Nahmias.
+	// The formula for computing the decay factor from the average age comes
+	// from "Production and Operations Analysis" by Steven Nahmias.
 	DECAY float64 = 2 / (float64(AVG_METRIC_AGE) + 1)
 
 	// For best results, the moving average should not be initialized to the
@@ -18,7 +22,7 @@ const (
 	WARMUP_SAMPLES uint8 = 10
 )
 
-// MovingAvgerage is the interface that computes a moving average over a time-
+// MovingAverage is the interface that computes a moving average over a time-
 // series stream of numbers. The average may be over a window or exponentially
 // decaying.
 type MovingAverage interface {
@@ -26,10 +30,12 @@ type MovingAverage interface {
 	Add(float64)
 }
 
-// NewMovingAverage constructs a MovingAvger that computes an average with the
+// NewMovingAverage constructs a MovingAverage that computes an average with the
 // desired characteristics in the moving window or exponential decay. If no
 // age is given, it constructs a default exponentially weighted implementation
-// that consumes minimal memory.
+// that consumes minimal memory. The age is related to the decay factor alpha
+// by the formula given for the DECAY constant. It signifies the average age
+// of the samples as time goes to infinity.
 func NewMovingAverage(age ...float64) MovingAverage {
 	if len(age) == 0 || age[0] == AVG_METRIC_AGE {
 		return new(SimpleEWMA)
