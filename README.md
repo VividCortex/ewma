@@ -79,6 +79,11 @@ This repository contains two implementations of the EWMA algorithm, with differe
 The implementations all conform to the MovingAverage interface, and the constructor returns
 that type.
 
+Current implementations assume an implicit time interval of 1.0 between every sample added.
+That is, the passage of time is treated as though it's the same as the arrival of samples.
+If you need time-based decay when samples are not arriving precisely at set intervals, then
+this package will not support your needs at present.
+
 #### SimpleEWMA
 
 A SimpleEWMA is designed for low CPU and memory consumption. It **will** have different behavior than the VariableEWMA
