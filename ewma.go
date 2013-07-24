@@ -52,6 +52,9 @@ func NewMovingAverage(age ...float64) MovingAverage {
 // differently when it's equal to zero, which is assumed to mean
 // uninitialized, so if a value is likely to actually become zero over time,
 // then any non-zero value will cause a sharp jump instead of a small change.
+// However, note that this takes a long time, and the value may just
+// decays to a stable value that's close to zero, but which won't be mistaken
+// for uninitialized. See http://play.golang.org/p/litxBDr_RC for example.
 type SimpleEWMA struct {
 	// The current value of the average. After adding with Add(), this is
 	// updated to reflect the average of all values seen thus far.
