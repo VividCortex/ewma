@@ -97,6 +97,10 @@ number of samples added to it. As a result it uses a little over twice the memor
 
 ## Usage
 
+### API Documentation
+
+View the GoDoc generated documentation [here](http://godoc.org/github.com/VividCortex/ewma).
+
 ```go
 package main
 import "github.com/VividCortex/ewma"
