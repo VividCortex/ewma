@@ -102,8 +102,9 @@ func (e *VariableEWMA) Add(value float64) {
 // Value returns the current value of the average, or 0.0 if the series hasn't
 // warmed up yet.
 func (e *VariableEWMA) Value() float64 {
-	if e.count < WARMUP_SAMPLES {
+	if e.count <= WARMUP_SAMPLES {
 		return 0.0
 	}
+
 	return e.value
 }
