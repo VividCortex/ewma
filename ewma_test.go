@@ -46,3 +46,17 @@ func TestVariableEWMA2(t *testing.T) {
 		t.Errorf("e.Value() is %v, wanted %v", e.Value(), 5015.397367486725)
 	}
 }
+
+func TestVariableEWMAWarmup(t *testing.T) {
+	e := NewMovingAverage(5)
+	for i, f := range samples {
+		e.Add(f)
+
+		// all values returned during warmup should be 0.0
+		if uint8(i) < WARMUP_SAMPLES {
+			if e.Value() != 0.0 {
+				t.Errorf("e.Value() is %v, expected %v", e.Value(), 0.0)
+			}
+		}
+	}
+}
