@@ -26,8 +26,9 @@ const (
 // series stream of numbers. The average may be over a window or exponentially
 // decaying.
 type MovingAverage interface {
-	Value() float64
 	Add(float64)
+	Value() float64
+	Set(float64)
 }
 
 // NewMovingAverage constructs a MovingAverage that computes an average with the
@@ -61,11 +62,6 @@ type SimpleEWMA struct {
 	value float64
 }
 
-// Value returns the current value of the moving average.
-func (e *SimpleEWMA) Value() float64 {
-	return e.value
-}
-
 // Add adds a value to the series and updates the moving average.
 func (e *SimpleEWMA) Add(value float64) {
 	if e.value == 0 { // this is a proxy for "uninitialized"
@@ -73,6 +69,16 @@ func (e *SimpleEWMA) Add(value float64) {
 	} else {
 		e.value = (value * DECAY) + (e.value * (1 - DECAY))
 	}
+}
+
+// Value returns the current value of the moving average.
+func (e *SimpleEWMA) Value() float64 {
+	return e.value
+}
+
+// Set sets the EWMA's value.
+func (e *SimpleEWMA) Set(value float64) {
+	e.value = value
 }
 
 // VariableEWMA represents the exponentially weighted moving average of a series of
@@ -107,4 +113,12 @@ func (e *VariableEWMA) Value() float64 {
 	}
 
 	return e.value
+}
+
+// Set sets the EWMA's value.
+func (e *VariableEWMA) Set(value float64) {
+	e.value = value
+	if e.count <= WARMUP_SAMPLES {
+		e.count = WARMUP_SAMPLES + 1
+	}
 }
