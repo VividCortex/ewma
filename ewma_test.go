@@ -25,6 +25,10 @@ func TestSimpleEWMA(t *testing.T) {
 	if e.Value() != 4734.500946466118 {
 		t.Errorf("e.Value() is %v, wanted %v", e.Value(), 4734.500946466118)
 	}
+	e.Set(1.0)
+	if e.Value() != 1.0 {
+		t.Errorf("e.Value() is %d", e.Value())
+	}
 }
 
 func TestVariableEWMA(t *testing.T) {
@@ -34,6 +38,10 @@ func TestVariableEWMA(t *testing.T) {
 	}
 	if e.Value() != 4734.500946466118 {
 		t.Errorf("e.Value() is %v, wanted %v", e.Value(), 4734.500946466118)
+	}
+	e.Set(1.0)
+	if e.Value() != 1.0 {
+		t.Errorf("e.Value() is %d", e.Value())
 	}
 }
 
@@ -58,5 +66,11 @@ func TestVariableEWMAWarmup(t *testing.T) {
 				t.Errorf("e.Value() is %v, expected %v", e.Value(), 0.0)
 			}
 		}
+	}
+	e = NewMovingAverage(5)
+	e.Set(5)
+	e.Add(1)
+	if e.Value() >= 5 {
+		t.Errorf("e.Value() is %d, expected it to decay towards 0", e.Value())
 	}
 }
