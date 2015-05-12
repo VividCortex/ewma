@@ -5,10 +5,6 @@ Quantifying Abnormal Behavior talk](https://vividcortex.com/blog/2013/07/23/a-fa
 
 ![Build Status](https://circleci.com/gh/VividCortex/moving_average.png?circle-token=1459fa37f9ca0e50cef05d1963146d96d47ea523)
 
-A picture of a cat:
-
-![Moving Average Cat](http://f.cl.ly/items/1z3T2C2S2c1K2Z2Q3j05/Image%202013.07.05%2018%3A36%3A23.jpeg)
-
 ### Exponentially Weighted Moving Average
 
 An exponentially weighted moving average is a way to continuously compute a type of
@@ -116,7 +112,7 @@ func main() {
     4599, 5711, 4746, 4621, 5037, 4218, 4925, 4281, 5207, 5203, 5594, 5149,
   }
 
-  e := ewma.NewMovingAverage()       //=> Returns a SimgpleEWMA if called without params
+  e := ewma.NewMovingAverage()       //=> Returns a SimpleEWMA if called without params
   a := ewma.NewMovingAverage(5)      //=> returns a VariableEWMA with a decay of 2 / (5 + 1)
 
   for _, f := range samples {
