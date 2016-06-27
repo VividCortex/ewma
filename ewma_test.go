@@ -74,3 +74,21 @@ func TestVariableEWMAWarmup(t *testing.T) {
 		t.Errorf("e.Value() is %d, expected it to decay towards 0", e.Value())
 	}
 }
+
+func TestVariableEWMAWarmup2(t *testing.T) {
+	e := NewMovingAverage(5)
+	testSamples := [12]float64{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10000, 1}
+	for i, f := range testSamples {
+		e.Add(f)
+
+		// all values returned during warmup should be 0.0
+		if uint8(i) < WARMUP_SAMPLES {
+			if e.Value() != 0.0 {
+				t.Errorf("e.Value() is %v, expected %v", e.Value(), 0.0)
+			}
+		}
+	}
+	if val := e.Value(); val == 1.0 {
+		t.Errorf("e.Value() is expected to be greater than %v", 1.0)
+	}
+}

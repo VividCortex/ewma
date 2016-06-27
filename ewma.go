@@ -94,16 +94,15 @@ type VariableEWMA struct {
 
 // Add adds a value to the series and updates the moving average.
 func (e *VariableEWMA) Add(value float64) {
-	if e.count < WARMUP_SAMPLES {
+	switch {
+	case e.count < WARMUP_SAMPLES:
 		e.count++
 		e.value += value
-	} else if e.count == WARMUP_SAMPLES {
-		e.value = e.value / float64(WARMUP_SAMPLES)
+	case e.count == WARMUP_SAMPLES:
 		e.count++
-		//You lost slice[WARMUP_SAMPLES] item
-		//just compute samples := [12]float64{0,1,2,3,4,5,6,7,8,9,10000,11}
+		e.value = e.value / float64(WARMUP_SAMPLES)
 		e.value = (value * e.decay) + (e.value * (1 - e.decay))
-	} else {
+	default:
 		e.value = (value * e.decay) + (e.value * (1 - e.decay))
 	}
 }
