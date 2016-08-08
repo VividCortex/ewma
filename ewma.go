@@ -28,6 +28,7 @@ const (
 type MovingAverage interface {
 	Add(float64)
 	Value() float64
+	ValueIgnoreWarmup() float64
 	Set(float64)
 }
 
@@ -73,6 +74,12 @@ func (e *SimpleEWMA) Add(value float64) {
 
 // Value returns the current value of the moving average.
 func (e *SimpleEWMA) Value() float64 {
+	return e.value
+}
+
+// Value returns the current value of the average. It ignores the warmup safeguard
+//handy for testing or debugging.
+func (e *SimpleEWMA) ValueIgnoreWarmup() float64 {
 	return e.value
 }
 
