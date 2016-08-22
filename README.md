@@ -125,8 +125,8 @@ func main() {
 }
 ```
 
-Contributing
-===
+## Contributing
+
 We only accept pull requests for minor fixes or improvements. This includes:
 
 * Small bug fixes
