@@ -125,10 +125,16 @@ func main() {
 }
 ```
 
-## Contribute
+Contributing
+===
+We only accept pull requests for minor fixes or improvements. This includes:
 
-Contributions are welcome. Please open pull requests or issue reports!
+* Small bug fixes
+* Typos
+* Documentation or comments
 
+Please open issues to discuss new features. Pull requests for new features will be rejected,
+so we recommend forking the repository and making changes in your fork for your use case.
 
 ## License
 
