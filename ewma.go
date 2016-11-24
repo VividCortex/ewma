@@ -117,6 +117,11 @@ func (e *VariableEWMA) Value() float64 {
 	return e.value
 }
 
+// Value returns the current value of the average. It ignores the warmup safeguard
+//handy for testing or debugging.
+func (e *VariableEWMA) ValueIgnoreWarmup() float64 {
+	return e.value
+}
 // Set sets the EWMA's value.
 func (e *VariableEWMA) Set(value float64) {
 	e.value = value
