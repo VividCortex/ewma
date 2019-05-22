@@ -36,7 +36,7 @@ func TestSimpleEWMA(t *testing.T) {
 	}
 	e.Set(1.0)
 	if e.Value() != 1.0 {
-		t.Errorf("e.Value() is %d", e.Value())
+		t.Errorf("e.Value() is %v", e.Value())
 	}
 }
 
@@ -50,7 +50,7 @@ func TestVariableEWMA(t *testing.T) {
 	}
 	e.Set(1.0)
 	if e.Value() != 1.0 {
-		t.Errorf("e.Value() is %d", e.Value())
+		t.Errorf("e.Value() is %v", e.Value())
 	}
 }
 
@@ -80,7 +80,7 @@ func TestVariableEWMAWarmup(t *testing.T) {
 	e.Set(5)
 	e.Add(1)
 	if e.Value() >= 5 {
-		t.Errorf("e.Value() is %d, expected it to decay towards 0", e.Value())
+		t.Errorf("e.Value() is %v, expected it to decay towards 0", e.Value())
 	}
 }
 
