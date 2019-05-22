@@ -1,4 +1,8 @@
-# EWMA [![GoDoc](https://godoc.org/github.com/VividCortex/ewma?status.svg)](https://godoc.org/github.com/VividCortex/ewma) ![Build Status](https://circleci.com/gh/VividCortex/moving_average.png?circle-token=1459fa37f9ca0e50cef05d1963146d96d47ea523)
+# EWMA
+
+[![GoDoc](https://godoc.org/github.com/VividCortex/ewma?status.svg)](https://godoc.org/github.com/VividCortex/ewma)
+[![CircleCI](https://circleci.com/gh/VividCortex/ewma.svg?style=svg)](https://circleci.com/gh/VividCortex/ewma)
+[![codecov](https://codecov.io/gh/VividCortex/ewma/branch/master/graph/badge.svg)](https://codecov.io/gh/VividCortex/ewma)
 
 This repo provides Exponentially Weighted Moving Average algorithms, or EWMAs for short, [based on our
 Quantifying Abnormal Behavior talk](https://vividcortex.com/blog/2013/07/23/a-fast-go-library-for-exponential-moving-averages/).
