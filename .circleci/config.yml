@@ -9,8 +9,5 @@ jobs:
 
     steps:
       - checkout
-      # get the latest dep
-      - run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-      - run: dep ensure -v -vendor-only
       - run: go vet ./...
       - run: go test -race ./...
