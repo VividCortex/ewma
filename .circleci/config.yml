@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /go/src/github.com/VividCortex/ewma
     docker: 
-      - image: circleci/golang:1.12.5
+      - image: circleci/golang:1.13.3
     environment:
       GO111MODULE: "off"
 
