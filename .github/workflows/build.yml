@@ -21,8 +21,6 @@ jobs:
             build-with: false
     continue-on-error: ${{ matrix.build-with == false }}
     name: Build with ${{ matrix.go }}
-    env:
-      GO111MODULE: on
 
     steps:
     - name: Set up Go
