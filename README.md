@@ -1,7 +1,7 @@
 # EWMA
 
 [![GoDoc](https://godoc.org/github.com/VividCortex/ewma?status.svg)](https://godoc.org/github.com/VividCortex/ewma)
-[![CircleCI](https://circleci.com/gh/VividCortex/ewma.svg?style=svg)](https://circleci.com/gh/VividCortex/ewma)
+![build](https://github.com/VividCortex/ewma/workflows/build/badge.svg)
 [![codecov](https://codecov.io/gh/VividCortex/ewma/branch/master/graph/badge.svg)](https://codecov.io/gh/VividCortex/ewma)
 
 This repo provides Exponentially Weighted Moving Average algorithms, or EWMAs for short, [based on our
