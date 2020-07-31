@@ -1,0 +1,46 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - go: 1.11.9
+            build-with: false
+          - go: 1.13.14
+            build-with: true
+          - go: 1.14.6
+            build-with: false
+    continue-on-error: ${{ matrix.build-with == false }}
+    name: Build with ${{ matrix.go }}
+
+    steps:
+    - name: Set up Go
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Vet
+      run: |
+        go vet ./...
+
+    - name: Test
+      run: |
+        go test -vet=off -race -coverprofile=coverage.txt -covermode=atomic ./...
+
+    - name: Upload code coverage report
+      if: matrix.build-with == true
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: bash <(curl -s https://raw.githubusercontent.com/VividCortex/codecov-bash/master/codecov)
