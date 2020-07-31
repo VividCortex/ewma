@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    needs: configure
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
