@@ -13,11 +13,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - go: 1.11.9
-            build-with: false
-          - go: 1.13.14
+          - go: 1.12
             build-with: true
-          - go: 1.14.6
+          - go: 1.13
+            build-with: false
+          - go: 1.14
+            build-with: false
+          - go: 1.15
             build-with: false
     continue-on-error: ${{ matrix.build-with == false }}
     name: Build with ${{ matrix.go }}
