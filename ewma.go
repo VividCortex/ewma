@@ -59,26 +59,30 @@ func NewMovingAverage(age ...float64) MovingAverage {
 type SimpleEWMA struct {
 	// The current value of the average. After adding with Add(), this is
 	// updated to reflect the average of all values seen thus far.
-	value float64
+	value *float64
 }
 
 // Add adds a value to the series and updates the moving average.
 func (e *SimpleEWMA) Add(value float64) {
-	if e.value == 0 { // this is a proxy for "uninitialized"
-		e.value = value
+	if e.value == nil { // this is a proxy for "uninitialized"
+		e.value = &value
 	} else {
-		e.value = (value * DECAY) + (e.value * (1 - DECAY))
+		*e.value = (value * DECAY) + (*e.value * (1 - DECAY))
 	}
 }
 
 // Value returns the current value of the moving average.
 func (e *SimpleEWMA) Value() float64 {
-	return e.value
+	if e.value == nil { // this is a proxy for "uninitialized"
+		return 0
+	} else {
+		return *e.value
+	}
 }
 
 // Set sets the EWMA's value.
 func (e *SimpleEWMA) Set(value float64) {
-	e.value = value
+	e.value = &value
 }
 
 // VariableEWMA represents the exponentially weighted moving average of a series of
