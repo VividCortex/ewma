@@ -67,7 +67,7 @@ func (e *SimpleEWMA) Add(value float64) {
 	if e.value == nil { // this is a proxy for "uninitialized"
 		e.value = &value
 	} else {
-		*e.value = (value * DECAY) + (*e.value * (1 - DECAY))
+		*e.value = (value * DECAY) + (e.Value() * (1 - DECAY))
 	}
 }
 
